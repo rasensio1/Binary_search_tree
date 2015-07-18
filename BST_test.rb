@@ -126,8 +126,18 @@ class NodeTest < Minitest::Test
     assert_equal 5,  tree.print_tree
   end
 
+  def test_can_order_3_values
+    tree = Tree.new("test_files/input_test_5.txt")
+    tree.map_data_to_tree(tree.create_array_from_input)
+    assert_equal [4,5,6],  tree.order_values
+  end
 
-
+  def test_can_order_8_values
+    tree = Tree.new("test_files/input_test_4.txt")
+    tree.map_data_to_tree(tree.create_array_from_input)
+    assert_equal [4,5,6,7,10,14,15,16],  tree.order_values
+  end
+  
 
 
 end

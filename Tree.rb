@@ -44,12 +44,13 @@ class Tree
   end
 
   def find_value(hunt)
-    puts @first_node.find_value(hunt)
     @first_node.find_value(hunt)
   end
 
   def order_values
-
+    output_file = File.open('./output.txt', 'w')
+    output_file.write (@first_node.order_values.flatten)
+    @first_node.order_values.flatten
   end
 
   def delete_value

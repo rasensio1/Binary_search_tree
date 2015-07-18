@@ -73,34 +73,45 @@ class Node
     end
   end
 
-  def print_values()
-    below_me = {}
+  # def print_values()
+  #   below_me = {}
+  #
+  #
+  #   if @left
+  #     below_me[@left.depth] = [@left.value]
+  #     @left.print_values.each do |key, value|
+  #       below_me[key] = [value]
+  #     end
+  #
+  #   elsif !@left
+  #     below_me[self.depth+1] = ['']
+  #   end
+  #
+  #   if @right
+  #     below_me[@right.depth] << @right.value
+  #     @right.print_values.each do |key, values|
+  #       values.each do |value|
+  #         binding.pry
+  #         below_me[key] << [value]
+  #       end
+  #     end
+  #   elsif !@right && @left
+  #     below_me[self.depth+1] << ''
+  #   end
+  #   below_me
+  # end
 
-    if !@left && !@right
+  def order_values
 
+    pairs = [self.value]
     if @left
-      below_me[@left.depth] = [@left.value]
-      @left.print_values.each do |key, value|
-        below_me[key] = [value]
-      end
-    elsif !@left
-      below_me[self.depth+1] = [nil]
-    elsif @right
-      below_me[@right.depth] << @right.value
-      @right.print_values.each do |key, values|
-        values.each do |value|
-          binding.pry
-          below_me[key] << value
-        end
-      end
-    elsif !@right
-      below_me[self.depth+1] = [nil]
+      pairs.unshift(@left.order_values)
     end
-    below_me
-  end
 
-  def combine_values_below(current_hash)
-
+    if @right
+      pairs << @right.order_values
+    end
+    pairs
   end
 
 
