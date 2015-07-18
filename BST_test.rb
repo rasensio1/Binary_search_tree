@@ -112,20 +112,6 @@ class NodeTest < Minitest::Test
     assert_equal 5, tree.first_node.right.right.right.right.left.depth
   end
 
-  def test_it_prints_one_node_trees
-    skip
-    tree = Tree.new("test_files/input_test_3.txt")
-    tree.map_data_to_tree(tree.create_array_from_input)
-    assert_equal 5,  tree.print_tree
-  end
-
-  def test_it_prints_two_node_trees
-    skip
-    tree = Tree.new("test_files/input_test_1.txt")
-    tree.map_data_to_tree(tree.create_array_from_input)
-    assert_equal 5,  tree.print_tree
-  end
-
   def test_can_order_3_values
     tree = Tree.new("test_files/input_test_5.txt")
     tree.map_data_to_tree(tree.create_array_from_input)
@@ -150,7 +136,20 @@ class NodeTest < Minitest::Test
     tree.map_data_to_tree(tree.create_array_from_input)
     tree.delete_value_from_tree(5)
     assert_equal [4,6,7,10,14,15,16],  tree.order_values
+  end
+  
+  def test_it_prints_one_node_trees
+    skip
+    tree = Tree.new("test_files/input_test_3.txt")
+    tree.map_data_to_tree(tree.create_array_from_input)
+    assert_equal 5,  tree.print_tree
+  end
 
+  def test_it_prints_two_node_trees
+    skip
+    tree = Tree.new("test_files/input_test_1.txt")
+    tree.map_data_to_tree(tree.create_array_from_input)
+    assert_equal 5,  tree.print_tree
   end
 
 

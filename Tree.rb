@@ -26,9 +26,20 @@ class Tree
 
 
   def print_tree
-    puts "Printing the Tree".center(40, "-")
-    puts @first_node.value
-    puts @first_node.print_values
+    puts "Printing the Tree".center(80, "-")
+    puts @first_node.value.to_s.center(80, " ")
+
+    levels_hash = @first_node.print_values
+    formats_tree_for_printing(levels_hash)
+
+    1.upto(levels_hash.size) do |i|
+      puts "#{i} : #{levels_hash[i].flatten}".center(80, " ")
+    end
+  end
+
+  def formats_tree_for_printing(hash)
+    levels_array = []
+
   end
 
   def find_max

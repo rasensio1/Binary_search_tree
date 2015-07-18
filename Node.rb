@@ -73,33 +73,39 @@ class Node
     end
   end
 
-  # def print_values()
-  #   below_me = {}
-  #
-  #
-  #   if @left
-  #     below_me[@left.depth] = [@left.value]
-  #     @left.print_values.each do |key, value|
-  #       below_me[key] = [value]
-  #     end
-  #
-  #   elsif !@left
-  #     below_me[self.depth+1] = ['']
-  #   end
-  #
-  #   if @right
-  #     below_me[@right.depth] << @right.value
-  #     @right.print_values.each do |key, values|
-  #       values.each do |value|
-  #         binding.pry
-  #         below_me[key] << [value]
-  #       end
-  #     end
-  #   elsif !@right && @left
-  #     below_me[self.depth+1] << ''
-  #   end
-  #   below_me
-  # end
+  def print_values
+    below_me = {}
+
+    if @left
+      @left.print_values.each do |key,value|
+        below_me[key] = [value]
+      end
+    end
+
+    if @right
+      @right.print_values.each do |key, value|
+        if below_me[key] == nil
+          below_me[key] = [value]
+        else
+          below_me[key] << [value]
+        end
+              
+      end
+    end
+
+    if @left
+      below_me[@left.depth] = [left.value]
+    else
+      below_me[self.depth+1] = [nil]
+    end
+
+    if @right
+      below_me[@right.depth] << [@right.value]
+    else
+      below_me[self.depth+1] << [nil]
+    end
+      below_me
+  end
 
   def order_values
     pairs = [self.value]
@@ -116,13 +122,9 @@ class Node
     if @left.value == hunt
       need_to_reassign = (@left.order_values - [@left.value])
       @left = nil
-      #binding.pry
-      #$my_tree.map_data_to_tree(need_to_reassign
-
     elsif @right.value == hunt
       need_to_reassign = (@right.order_values - [@right.value])
       @right = nil
-      #$my_tree.map_data_to_tree(need_to_reassign)
     else
       if self.greater_than?(hunt)
         @left.delete_value(hunt)
@@ -133,17 +135,5 @@ class Node
     need_to_reassign
   end
 
-  # def delete_nodes(starting_node)
-  #   if @right.right
-  #     @right.delete_nodes
-  #   else
-  #     @right
-  #   end
-  #
-  #   if @left.left
-  #     @left.delete_nodes
-  #   @left
-  #
-  # end
 
 end
