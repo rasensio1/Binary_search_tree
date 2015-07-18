@@ -137,7 +137,22 @@ class NodeTest < Minitest::Test
     tree.map_data_to_tree(tree.create_array_from_input)
     assert_equal [4,5,6,7,10,14,15,16],  tree.order_values
   end
-  
+
+  def test_can_delete_from_a_simple_tree
+    tree = Tree.new("test_files/input_test_5.txt")
+    tree.map_data_to_tree(tree.create_array_from_input)
+    tree.delete_value_from_tree(4)
+    assert_nil tree.first_node.left
+  end
+
+  def test_can_delete_from_a_complex_tree
+    tree = Tree.new("test_files/input_test_4.txt")
+    tree.map_data_to_tree(tree.create_array_from_input)
+    tree.delete_value_from_tree(5)
+    assert_equal [4,6,7,10,14,15,16],  tree.order_values
+
+  end
+
 
 
 end

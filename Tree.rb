@@ -53,6 +53,13 @@ class Tree
     @first_node.order_values.flatten
   end
 
-  def delete_value
+  def delete_value_from_tree(hunt)
+    reassign = @first_node.delete_value(hunt).flatten
+    reassign.count.times do |element|
+      @first_node.new_node(reassign.shift)
+    end
   end
+
+
+
 end

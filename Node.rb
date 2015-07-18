@@ -102,18 +102,48 @@ class Node
   # end
 
   def order_values
-
     pairs = [self.value]
     if @left
       pairs.unshift(@left.order_values)
     end
-
     if @right
       pairs << @right.order_values
     end
     pairs
   end
 
+  def delete_value(hunt)
+    if @left.value == hunt
+      need_to_reassign = (@left.order_values - [@left.value])
+      @left = nil
+      #binding.pry
+      #$my_tree.map_data_to_tree(need_to_reassign
 
+    elsif @right.value == hunt
+      need_to_reassign = (@right.order_values - [@right.value])
+      @right = nil
+      #$my_tree.map_data_to_tree(need_to_reassign)
+    else
+      if self.greater_than?(hunt)
+        @left.delete_value(hunt)
+      elsif self.less_than?(hunt)
+        @right.delete_value(hunt)
+      end
+    end
+    need_to_reassign
+  end
+
+  # def delete_nodes(starting_node)
+  #   if @right.right
+  #     @right.delete_nodes
+  #   else
+  #     @right
+  #   end
+  #
+  #   if @left.left
+  #     @left.delete_nodes
+  #   @left
+  #
+  # end
 
 end
