@@ -30,17 +30,60 @@ class Tree
     puts @first_node.value.to_s.center(80, " ")
 
     levels_hash = @first_node.print_values
-    formats_tree_for_printing(levels_hash)
+    ordered_lines = flatten_array(levels_hash)
+    no_nil = remove_nil(ordered_lines)
+    formatted = format_output_lines(no_nil)
 
-    1.upto(levels_hash.size) do |i|
-      puts "#{i} : #{levels_hash[i].flatten}".center(80, " ")
+    reduce_output_lines(formatted).each do |line|
+      puts "#{line}"
+    end
+
+  end
+
+  def flatten_array(hash)
+    ordered_lines = []
+      1.upto(hash.size) do |i|
+        ordered_lines[i] = hash[i].flatten
+      end
+      ordered_lines
+  end
+
+  def remove_nil(array)
+    no_nil = []
+    array.shift
+    array.each do |row|
+      no_nil << row.map do |element|
+        if element == nil
+          element = " "
+        else
+          element
+        end
+      end
+    end
+    no_nil
+  end
+
+  def format_output_lines(array_no_nil)
+    formatted = []
+    0.upto(array_no_nil.size-1) do |index|
+
+      formatted << array_no_nil[index].map do |element|
+        " #{' '*(80/(array_no_nil[index].size+1) - 2)}#{element.to_s}"
+      end
+    end
+    formatted
+  end
+
+  def reduce_output_lines(formatted_array)
+
+    formatted_array.map do |line|
+      line.reduce('') do |total,x|
+        total + x
+      end
     end
   end
 
-  def formats_tree_for_printing(hash)
-    levels_array = []
 
-  end
 
   def find_max
     max = @first_node.look_max
@@ -70,7 +113,5 @@ class Tree
       @first_node.new_node(reassign.shift)
     end
   end
-
-
 
 end

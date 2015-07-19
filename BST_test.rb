@@ -7,6 +7,30 @@ class TreeTest < Minitest::Test
 
   end
 
+  def test_removes_nil_values
+    tree = Tree.new("test_files/input_test_3.txt")
+    assert_equal [[1,2,3],[4,5," ", " "]], tree.remove_nil([nil,[1,2,3], [4,5,nil,nil]])
+  end
+
+  def test_format_output_lines
+    tree = Tree.new("test_files/input_test_3.txt")
+    assert_equal "hello", tree.format_output_lines([[1,2,3],[4,5," ", " "]])
+  end
+
+  def test_it_prints_one_node_trees
+    skip
+    tree = Tree.new("test_files/input_test_3.txt")
+    tree.map_data_to_tree(tree.create_array_from_input)
+    assert_equal 5,  tree.print_tree
+  end
+
+  def test_it_prints_two_node_trees
+    skip
+    tree = Tree.new("test_files/input_test_1.txt")
+    tree.map_data_to_tree(tree.create_array_from_input)
+    assert_equal 5,  tree.print_tree
+  end
+
 end
 
 class NodeTest < Minitest::Test
@@ -137,21 +161,6 @@ class NodeTest < Minitest::Test
     tree.delete_value_from_tree(5)
     assert_equal [4,6,7,10,14,15,16],  tree.order_values
   end
-  
-  def test_it_prints_one_node_trees
-    skip
-    tree = Tree.new("test_files/input_test_3.txt")
-    tree.map_data_to_tree(tree.create_array_from_input)
-    assert_equal 5,  tree.print_tree
-  end
-
-  def test_it_prints_two_node_trees
-    skip
-    tree = Tree.new("test_files/input_test_1.txt")
-    tree.map_data_to_tree(tree.create_array_from_input)
-    assert_equal 5,  tree.print_tree
-  end
-
 
 
 end
