@@ -37,7 +37,11 @@ class Tree
     reduce_output_lines(formatted).each do |line|
       puts "#{line}"
     end
+  end
 
+  def max_depth
+    depth = @first_node.print_values.size
+    "The maxiumum depth is #{depth}"
   end
 
   def flatten_array(hash)
@@ -87,14 +91,12 @@ class Tree
 
   def find_max
     max = @first_node.look_max
-    puts "The maximum value is #{max}"
-    max
+    "The maximum value is #{max}"
   end
 
   def find_min
     min = @first_node.look_min
-    puts "The minimum value is #{min}"
-    min
+    "The minimum value is #{min}"
   end
 
   def find_value(hunt)

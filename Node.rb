@@ -11,21 +11,11 @@ class Node
   end
 
   def look_max
-    if @right
-      @right.look_max
-    else
-      puts @value
-      @value
-    end
+    @right ? @right.look_max : @value
   end
 
   def look_min
-    if @left
-      @left.look_min
-    else
-      puts @value
-      @value
-    end
+    @left ? @left.look_min : @value
   end
 
   def greater_than?(other_node_value)
@@ -56,7 +46,6 @@ class Node
 
   def find_value(hunt)
     if @value == hunt
-      puts "#{hunt} was found."
       "#{hunt} was found."
     elsif self.greater_than?(hunt)
       if @left == nil
@@ -89,7 +78,6 @@ class Node
         else
           below_me[key] << [value]
         end
-              
       end
     end
 
@@ -134,6 +122,4 @@ class Node
     end
     need_to_reassign
   end
-
-
 end

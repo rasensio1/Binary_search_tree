@@ -2,35 +2,16 @@ require 'minitest/autorun'
 require './bst'
 
 class TreeTest < Minitest::Test
-
-  def test_it_creates_an_array_of_readlies
-
-  end
-
   def test_removes_nil_values
     tree = Tree.new("test_files/input_test_3.txt")
     assert_equal [[1,2,3],[4,5," ", " "]], tree.remove_nil([nil,[1,2,3], [4,5,nil,nil]])
   end
 
   def test_format_output_lines
+    skip
     tree = Tree.new("test_files/input_test_3.txt")
     assert_equal "hello", tree.format_output_lines([[1,2,3],[4,5," ", " "]])
   end
-
-  def test_it_prints_one_node_trees
-    skip
-    tree = Tree.new("test_files/input_test_3.txt")
-    tree.map_data_to_tree(tree.create_array_from_input)
-    assert_equal 5,  tree.print_tree
-  end
-
-  def test_it_prints_two_node_trees
-    skip
-    tree = Tree.new("test_files/input_test_1.txt")
-    tree.map_data_to_tree(tree.create_array_from_input)
-    assert_equal 5,  tree.print_tree
-  end
-
 end
 
 class NodeTest < Minitest::Test
@@ -102,20 +83,14 @@ class NodeTest < Minitest::Test
 
     tree = Tree.new("test_files/input_test_2.txt")
     tree.map_data_to_tree(tree.create_array_from_input)
-    assert_equal 20, tree.find_max
+    assert_equal "The maximum value is 20", tree.find_max
   end
 
   def test_it_finds_the_min
     tree = Tree.new("test_files/input_test_2.txt")
     tree.map_data_to_tree(tree.create_array_from_input)
-    assert_equal 1, tree.find_min
+    assert_equal "The minimum value is 1", tree.find_min
   end
-
-  # def test_it_records_depth
-  #   tree = Tree.new("input_test_2.txt")
-  #   tree.map_data_to_tree(tree.create_array_from_input)
-  #   assert_equal 3, tree.first_node.right.right.right.depth
-  # end
 
   def test_it_can_find_a_value
     tree = Tree.new("test_files/input_test_2.txt")
